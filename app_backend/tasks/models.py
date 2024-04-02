@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from app_backend.database import Base
-from sqlalchemy import Column, Integer, String, ForeignKey, Date, func, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, TIMESTAMP, func, Boolean
 
 
 class Tasks(Base):
@@ -9,8 +9,8 @@ class Tasks(Base):
 
     id = Column(Integer, primary_key=True)
     owner = Column(ForeignKey("users.id"))
-    last_change = Column(Date, default=datetime.utcnow(), onupdate=func.now())
+    last_change = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
     title = Column(String, nullable=False)
     description = Column(String, nullable=False)
     is_done = Column(Boolean, default=False)
-    marked_done = Column(Date, default=False)
+    marked_done = Column(TIMESTAMP, nullable=True)

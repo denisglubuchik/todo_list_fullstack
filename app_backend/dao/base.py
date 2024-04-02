@@ -37,7 +37,7 @@ class BaseDAO:
     @classmethod
     async def update(cls, model_id: int, **data):
         async with async_session_maker() as session:
-            query = update(cls.model).where(id=model_id).values(**data)
+            query = update(cls.model).filter_by(id=model_id).values(**data).returning(cls.model)
             res = await session.execute(query)
             await session.commit()
             return res.scalar_one_or_none()
@@ -45,7 +45,7 @@ class BaseDAO:
     @classmethod
     async def delete(cls, model_id: int):
         async with async_session_maker() as session:
-            query = delete(cls.model).where(id=model_id)
+            query = delete(cls.model).filter_by(id=model_id)
             await session.execute(query)
             await session.commit()
 
