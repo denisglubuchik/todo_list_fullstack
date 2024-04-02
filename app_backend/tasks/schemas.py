@@ -19,7 +19,6 @@ class STask(BaseModel):
 
 class STaskCreate(BaseModel):
     id: int
-    owner: int
     title: str
     description: str
 

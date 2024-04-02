@@ -36,3 +36,13 @@ class IncorrectTokenFormatException(TasksException):
 
 class UserIsNotPresentException(TasksException):
     status_code = status.HTTP_401_UNAUTHORIZED
+
+
+class TaskDoesntBelongToYouException(TasksException):
+    status_code = status.HTTP_400_BAD_REQUEST
+    detail = "Task doesn't belong to you"
+
+
+class TaskDoesntExistException(TasksException):
+    status_code = status.HTTP_400_BAD_REQUEST
+    detail = "Task doesn't exist"
