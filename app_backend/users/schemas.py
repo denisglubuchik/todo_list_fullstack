@@ -2,10 +2,20 @@ from pydantic import BaseModel, EmailStr
 from datetime import date
 
 
-class SUsers(BaseModel):
+class SUsersCreate(BaseModel):
     id: int
     email: EmailStr
-    hashed_password: str
+    password: str
+
+    class Config:
+        from_attributes = True
+
+
+class SUsersAuth(SUsersCreate):
+    pass
+
+
+class SUsers(SUsersCreate):
     registered_at: date
 
     class Config:

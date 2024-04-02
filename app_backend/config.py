@@ -11,6 +11,10 @@ class Settings(BaseSettings):
     # REDIS_HOST: str
     # REDIS_PORT: int
 
+    SECRET_KEY: str
+    ALGORITHM: str
+
+
     class Config:
         env_file = ".env"
 
