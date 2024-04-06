@@ -3,7 +3,6 @@ from datetime import date
 
 
 class SUsersCreate(BaseModel):
-    id: int
     email: EmailStr
     password: str
 
@@ -16,6 +15,7 @@ class SUsersAuth(SUsersCreate):
 
 
 class SUsers(SUsersCreate):
+    id: int
     registered_at: date
 
     class Config:
