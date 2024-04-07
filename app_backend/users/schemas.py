@@ -3,7 +3,6 @@ from datetime import date
 
 
 class SUsersCreate(BaseModel):
-    id: int
     email: EmailStr
     password: str
 
@@ -20,4 +19,9 @@ class SUsers(SUsersCreate):
 
     class Config:
         from_attributes = True
+
+
+class TokenInfo(BaseModel):
+    access_token: str
+    token_type: str
 

@@ -1,14 +1,51 @@
-from datetime import datetime, timedelta
-from jose import jwt
-from passlib.context import CryptContext
+from datetime import timedelta, datetime
 from pydantic import EmailStr
+
+import jwt
+from passlib.context import CryptContext
 
 from app_backend.config import settings
 from app_backend.users.dao import UsersDAO
 from app_backend.users.models import Users
 from app_backend.exceptions import IncorrectEmailOrPasswordException
 
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+def encode_jwt(
+        payload: dict,
+        private_key: str = settings.auth_jwt.private_key_path.read_text(),
+        algorithm: str = settings.auth_jwt.algorithm,
+        expire_in_minutes: int = settings.auth_jwt.access_token_expires_minutes,
+        expires_delta: timedelta | None = None
+):
+    to_encode = payload.copy()
+    now = datetime.utcnow()
+    if expires_delta:
+        expire = now + expires_delta
+    else:
+        expire = now + timedelta(minutes=expire_in_minutes)
+    to_encode.update(
+        exp=expire,
+        iat=now,
+    )
+    encoded = jwt.encode(
+        payload,
+        private_key,
+        algorithm=algorithm,
+
+    )
+    return encoded
+
+
+def decode_jwt(
+        token: str,
+        pub_key: str = settings.auth_jwt.public_key_path.read_text(),
+        algorithm: str = settings.auth_jwt.algorithm,
+):
+    decoded = jwt.decode(token, pub_key, algorithms=[algorithm])
+    return decoded
 
 
 def get_password_hash(password: str) -> str:
@@ -17,16 +54,6 @@ def get_password_hash(password: str) -> str:
 
 def verify_password(password: str, hashed_password: str) -> bool:
     return pwd_context.verify(password, hashed_password)
-
-
-def create_access_token(data: dict) -> str:
-    to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=60)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(
-        to_encode,settings.SECRET_KEY, settings.ALGORITHM
-    )
-    return encoded_jwt
 
 
 async def authenticate_user(email: EmailStr, password: str):
