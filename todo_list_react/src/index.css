@@ -56,3 +56,9 @@ code {
   cursor: pointer;
   background: transparent;
 }
+
+.login-button {
+  position: relative;
+  top: 17px;
+  right: 30px;
+}

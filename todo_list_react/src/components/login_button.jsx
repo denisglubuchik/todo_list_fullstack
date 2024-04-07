@@ -6,7 +6,7 @@ const Login_button = () => {
     return(
         <div>
             <Link to="login">
-                <button className="header-button">
+                <button className="header-button login-button">
                     Login
                 </button>
             </Link>
