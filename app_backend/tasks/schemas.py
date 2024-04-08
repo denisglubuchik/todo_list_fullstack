@@ -18,7 +18,6 @@ class STask(BaseModel):
 
 
 class STaskCreate(BaseModel):
-    id: int
     title: str
     description: str
 

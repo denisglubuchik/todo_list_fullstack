@@ -5,6 +5,7 @@ import App from './App';
 import LoginPage from "./components/LoginPage";
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import RegisterPage from "./components/RegisterPage";
+import NewTaskPage from "./components/NewTaskPage";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
         path: "/register",
         element: <RegisterPage/>
     },
+    {
+        path: "/new_task",
+        element: <NewTaskPage/>,
+    }
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

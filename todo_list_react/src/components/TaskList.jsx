@@ -3,6 +3,7 @@ import axios from "axios";
 import {axios_instance, set_auth} from "../auth/auth";
 import {get_tasks} from "../api/api";
 import TaskCard from "./Task";
+import AddTaskButton from "./AddTaskButton";
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([])
@@ -20,10 +21,11 @@ const TaskList = () => {
 
     return (
         <>
+            <AddTaskButton/>
             <ul>
-                <h1>Done Tasks</h1>
+                <h1>Active Tasks</h1>
                 {tasks.map((task) => {
-                    if (task.is_done) {
+                    if (!task.is_done) {
                         return (
                             <li key={task.id}>
                                 <TaskCard task={task}/>
@@ -34,9 +36,9 @@ const TaskList = () => {
             </ul>
             <hr/>
             <ul>
-                <h1>Active Tasks</h1>
+                <h1>Done Tasks</h1>
                 {tasks.map((task) => {
-                    if (!task.is_done) {
+                    if (task.is_done) {
                         return (
                             <li key={task.id}>
                                 <TaskCard task={task}/>

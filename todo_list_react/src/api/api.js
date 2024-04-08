@@ -3,6 +3,11 @@ const get_tasks = (axios_instance) => {
     return axios_instance.get("/tasks")
 }
 
+const create_task = (axios_instance, data) => {
+    return axios_instance.post("/tasks", data)
+}
+
 export {
-    get_tasks
+    get_tasks,
+    create_task,
 }
