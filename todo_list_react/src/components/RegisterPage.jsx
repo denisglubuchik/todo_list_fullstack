@@ -39,7 +39,6 @@ const RegisterPage = () => {
             setEmail();
             setPassword();
             navigate("/")
-            return;
         } catch (error) {
             setRegisterError(error.response.data.detail)
         }

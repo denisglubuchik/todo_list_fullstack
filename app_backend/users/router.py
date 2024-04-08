@@ -37,6 +37,7 @@ async def register(response: Response, user_data: SUsersCreate) -> TokenInfo:
         return TokenInfo(
             access_token=access_token,
             token_type="Bearer",
+            email=user.email,
         )
 
 

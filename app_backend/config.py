@@ -23,9 +23,6 @@ class Settings(BaseSettings):
     # REDIS_HOST: str
     # REDIS_PORT: int
 
-    SECRET_KEY: str
-    ALGORITHM: str
-
     auth_jwt: AuthJWT = AuthJWT()
 
     class Config:

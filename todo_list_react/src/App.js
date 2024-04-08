@@ -1,18 +1,17 @@
 import React, {useState} from "react";
+import {useEffect} from "react";
+import cookie from "cookiejs";
 import Header from "./components/header";
-import {get_tasks} from "./api/api";
 import TaskList from "./components/TaskList";
 
 const App = () => {
   const [isAuth, setAuth] = useState(false);
-  const [username, setUsername] = useState("");
 
-  useState(() => {
-    if (localStorage.getItem("access_token") !== null) {
-      const username = setUsername(localStorage.getItem("username"));
+  useEffect(() => {
+    if (cookie.get("access_token")) {
       setAuth(true);
     }
-  }, [isAuth, username]);
+  }, [isAuth]);
 
   return (
       <>

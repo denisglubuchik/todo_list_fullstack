@@ -38,7 +38,6 @@ const LoginPage = () => {
             setEmail();
             setPassword();
             navigate("/")
-            return;
         } catch (error) {
             setLoginError("Login Failed")
         }

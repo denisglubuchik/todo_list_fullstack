@@ -1,14 +1,12 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import axios from "axios";
 import {logout} from "../auth/auth";
 
 const Logout_button = () => {
 
     async function handleLogout() {
         try {
-            const res = await logout();
-            window.location.href ='/';
+            await logout();
+            window.location.href = "/";
         } catch (error) {
             console.log(error)
         }
