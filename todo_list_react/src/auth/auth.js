@@ -1,10 +1,18 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8000"
+
+export const axios_instance = axios.create({
+    baseURL: "http://localhost:8000"
+})
+
+const set_auth = (axios_instance) => {
+    const token = localStorage.getItem("access_token")
+    axios_instance.defaults.headers.common['Authorization'] = `Bearer ${token}`
+}
 
 async function register(data) {
     const authurl = `/users/register`
-    return axios.post(authurl, data)
+    return axios_instance.post(authurl, data)
         .then((response) => {
             const token = response.data.access_token;
             const email = response.data.email;
@@ -16,7 +24,7 @@ async function register(data) {
 
 async function login(data) {
     const authurl = `/users/login`
-    return axios.post(authurl, data)
+    return axios_instance.post(authurl, data)
         .then((response) => {
             const token = response.data.access_token;
             const email = response.data.email;
@@ -30,14 +38,15 @@ async function login(data) {
 async function logout() {
     if (localStorage.getItem("access_token") !== null) {
         const authurl = `/users/logout`;
-        axios.get(authurl)
+        axios_instance.get(authurl)
             .then((response) => {
                 console.log("Logged out");
                 localStorage.clear()
+                axios.defaults.headers.common.Authorization.clear()
                 return response.data
             })
             .catch((error) => {throw error});
     }
 }
 
-export { register, login, logout };
+export { set_auth, register, login, logout };

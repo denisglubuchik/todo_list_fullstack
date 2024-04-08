@@ -10,20 +10,20 @@ from app_backend.exceptions import TaskDoesntBelongToYouException, TaskDoesntExi
 
 router = APIRouter(
     prefix='/tasks',
-    tags = ['tasks']
+    tags=['tasks']
 )
 
 
-# @router.get('')
-# async def get_tasks(current_user: Users = Depends(get_current_user)) -> list[STask]:
-#     tasks = await TasksDAO.get_tasks(current_user.id)
-#     return tasks
-
-
 @router.get('')
-async def get_tasks() -> list[STask]:
-    tasks = await TasksDAO.find_all()
+async def get_tasks(current_user: Users = Depends(get_current_user)) -> list[STask]:
+    tasks = await TasksDAO.get_tasks(current_user.id)
     return tasks
+
+
+# @router.get('')
+# async def get_tasks() -> list[STask]:
+#     tasks = await TasksDAO.find_all()
+#     return tasks
 
 
 @router.get('/{task_id}')

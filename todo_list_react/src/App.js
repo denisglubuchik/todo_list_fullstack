@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import Header from "./components/header";
+import {get_tasks} from "./api/api";
+import TaskList from "./components/TaskList";
 
 const App = () => {
   const [isAuth, setAuth] = useState(false);
@@ -17,6 +19,10 @@ const App = () => {
         <div>
           <Header isAuth={isAuth} />
         </div>
+          {isAuth ?
+              (<TaskList />):(<h1>Please authorize</h1>)
+          }
+
       </>
   )
 }

@@ -1,10 +1,10 @@
 import React from "react";
 
-const TaskCard = ({ title, description }) => {
+const TaskCard = ({task}) => {
     return(
         <div className="taskCard">
-            <span>{ title }</span>
-            <span>{ description }</span>
+            <h2>{ task.title }</h2>
+            <h3>{ task.description }</h3>
         </div>
     )
 }

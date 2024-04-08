@@ -52,6 +52,7 @@ async def login(response: Response, user_data: SUsersAuth) -> TokenInfo:
     return TokenInfo(
         access_token=access_token,
         token_type="Bearer",
+        email=user.email,
     )
 
 

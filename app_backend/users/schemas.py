@@ -25,4 +25,5 @@ class SUsers(SUsersCreate):
 class TokenInfo(BaseModel):
     access_token: str
     token_type: str
+    email: EmailStr
 
