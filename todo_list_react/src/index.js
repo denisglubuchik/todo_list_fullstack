@@ -6,12 +6,19 @@ import LoginPage from "./components/LoginPage";
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import RegisterPage from "./components/RegisterPage";
 import NewTaskPage from "./components/NewTaskPage";
+import EditTaskPage from "./components/EditTaskPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
-        errorElement: <div>не нашел</div>
+        errorElement: <div>не нашел</div>,
+        children: [
+            {
+                path: "/tasks/:task_id",
+                element: <EditTaskPage/>,
+            },
+        ],
     },
     {
         path: "/login",
@@ -24,7 +31,7 @@ const router = createBrowserRouter([
     {
         path: "/new_task",
         element: <NewTaskPage/>,
-    }
+    },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

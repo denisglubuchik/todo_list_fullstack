@@ -3,6 +3,7 @@ import {useEffect} from "react";
 import cookie from "cookiejs";
 import Header from "./components/header";
 import TaskList from "./components/TaskList";
+import {Outlet} from "react-router-dom";
 
 const App = () => {
   const [isAuth, setAuth] = useState(false);
@@ -19,7 +20,15 @@ const App = () => {
           <Header isAuth={isAuth} />
         </div>
           {isAuth ?
-              (<TaskList />):(<h1>Please authorize</h1>)
+              (
+                  <>
+                      <TaskList />
+                      <Outlet/>
+                  </>
+              )
+              :
+              (<h1>Please authorize</h1>)
+
           }
 
       </>

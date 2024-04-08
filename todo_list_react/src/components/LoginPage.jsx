@@ -1,7 +1,6 @@
 import React from "react";
 import { useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import "../styles/LoginRegisterPage.css"
 import {login} from "../auth/auth";
 
 

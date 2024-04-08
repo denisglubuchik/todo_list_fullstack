@@ -4,6 +4,7 @@ import {axios_instance, set_auth} from "../auth/auth";
 import {get_tasks} from "../api/api";
 import TaskCard from "./Task";
 import AddTaskButton from "./AddTaskButton";
+import {Link} from "react-router-dom";
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([])
@@ -28,9 +29,11 @@ const TaskList = () => {
                     {tasks.map((task) => {
                         if (!task.is_done) {
                             return (
-                                <li className="task-card" key={task.id}>
-                                    <TaskCard task={task}/>
-                                </li>
+                                <Link className="link-task" to={`tasks/${task.id}`} state={{ task: task }}>
+                                    <li className="task-card" key={task.id}>
+                                        <TaskCard task={task}/>
+                                    </li>
+                                </Link>
                             )
                         }
                     })}
@@ -40,9 +43,11 @@ const TaskList = () => {
                     {tasks.map((task) => {
                         if (task.is_done) {
                             return (
-                                <li className="task-card" key={task.id}>
-                                    <TaskCard task={task}/>
-                                </li>
+                                <Link className="link-task" to={`tasks/${task.id}`} state={{ task: task }}>
+                                    <li className="task-card" key={task.id}>
+                                        <TaskCard task={task}/>
+                                    </li>
+                                </Link>
                             )
                         }
                     })}
