@@ -15,6 +15,7 @@ class SUsersAuth(SUsersCreate):
 
 
 class SUsers(SUsersCreate):
+    id: int
     registered_at: date
 
     class Config:
