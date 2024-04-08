@@ -22,31 +22,32 @@ const TaskList = () => {
     return (
         <>
             <AddTaskButton/>
-            <ul>
-                <h1>Active Tasks</h1>
-                {tasks.map((task) => {
-                    if (!task.is_done) {
-                        return (
-                            <li key={task.id}>
-                                <TaskCard task={task}/>
-                            </li>
-                        )
-                    }
-                })}
-            </ul>
-            <hr/>
-            <ul>
-                <h1>Done Tasks</h1>
-                {tasks.map((task) => {
-                    if (task.is_done) {
-                        return (
-                            <li key={task.id}>
-                                <TaskCard task={task}/>
-                            </li>
-                        )
-                    }
-                })}
-            </ul>
+            <div className="tasks-main-container">
+                <ul className="tasks-container">
+                    <h1>Active Tasks</h1>
+                    {tasks.map((task) => {
+                        if (!task.is_done) {
+                            return (
+                                <li className="task-card" key={task.id}>
+                                    <TaskCard task={task}/>
+                                </li>
+                            )
+                        }
+                    })}
+                </ul>
+                <ul className="tasks-container">
+                    <h1>Done Tasks</h1>
+                    {tasks.map((task) => {
+                        if (task.is_done) {
+                            return (
+                                <li className="task-card" key={task.id}>
+                                    <TaskCard task={task}/>
+                                </li>
+                            )
+                        }
+                    })}
+                </ul>
+            </div>
         </>
 
     )

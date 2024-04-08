@@ -26,6 +26,7 @@ code {
   justify-content: space-between;
   border-radius: 20px;
   position: relative;
+  margin-bottom: 10px;
 }
 
 .header-title {
@@ -61,4 +62,54 @@ code {
   position: relative;
   top: 17px;
   right: 30px;
+}
+
+.tasks-main-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  gap: 20vw;
+}
+
+.tasks-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.tasks-container h1 {
+  margin: 0 auto;
+}
+
+.task-card {
+  background-color: #fef68a;
+  width: 30vw;
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: 130px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 3px;
+  transition: all ease-in-out 0.1s;
+  cursor: pointer;
+}
+.task-card:hover {
+  transform: scale(1.02);
+}
+
+.new-task-button-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.new-task-button {
+  font-size: 20px;
+  width: 150px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 3px;
+  background-color: #fef68a;
+  border-radius: 10px;
 }

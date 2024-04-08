@@ -3,9 +3,9 @@ import {Link} from "react-router-dom";
 
 const AddTaskButton = () =>{
     return(
-        <div>
+        <div className="new-task-button-container">
             <Link to="new_task">
-                <button>
+                <button className="new-task-button">
                     Add New Task
                 </button>
             </Link>
