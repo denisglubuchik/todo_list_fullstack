@@ -196,7 +196,24 @@ input[type='button'] {
   border-radius: 10px;
 }
 
-.edit-task-container {
+.delete-task-button-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.delete-task-button {
+  font-size: 20px;
+  width: 150px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 3px;
+  background-color: #ff4046;
+  border-radius: 10px;
+}
+
+.edit-or-new-task-container {
   height: 100%;
   width: 100%;
   left: 0;
@@ -206,7 +223,7 @@ input[type='button'] {
   background-color: #0004;
 }
 
-.edit-task-wrapper {
+.edit-or-new-task-wrapper {
   background-color: grey;
   border-radius: 10px;
   width: 50vw;
@@ -223,7 +240,7 @@ input[type='button'] {
   }
 }
 
-.edit-task-form {
+.edit-or-new-task-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -231,7 +248,7 @@ input[type='button'] {
   gap: 0.5em;
 }
 
-.edit-task-textarea {
+.edit-or-new-task-textarea {
   resize: none;
   height: 140px;
 }

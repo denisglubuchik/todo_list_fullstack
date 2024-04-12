@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {create_task, get_tasks} from "../api/api";
+import {create_task, edit_task, get_tasks} from "../api/api";
 import {axios_instance, set_auth} from "../auth/auth";
 import {useNavigate} from "react-router-dom";
 
@@ -13,6 +13,15 @@ const NewTaskPage = () => {
             set_auth(axios_instance)
     }, []);
 
+    const handleCancel = () => {
+        let modal = document.getElementById("editModal")
+        window.onclick = async function(event) {
+            if (event.target === modal) {
+                navigate("/")
+            }
+        }
+    }
+
     const handleNewTask = async () => {
 
         const data = {
@@ -24,7 +33,8 @@ const NewTaskPage = () => {
                 .then(() => {
                     setTitle("");
                     setDescription("");
-                    navigate("/")
+                    // navigate("/")
+                    window.location.href = "/"
                 })
         } catch (error) {
             console.log(error)
@@ -34,35 +44,25 @@ const NewTaskPage = () => {
 
 
     return(
-        <div className="mainContainer">
-            <div className={'titleContainer'}>
-                <div>Add New Task</div>
-            </div>
-            <form className="Input-Form">
-                <div className="InputContainer">
+        <div className="edit-or-new-task-container" onClick={handleCancel} id="editModal">
+            <div className="edit-or-new-task-wrapper">
+                <h1>Add New Task</h1>
+                <form className="edit-or-new-task-form">
                     <input type="text"
                            placeholder="Enter title here"
                            value={title}
                            onChange={(ev) => setTitle(ev.target.value)}
                            className="inputBox"
                     />
-                </div>
-                <br/>
-
-                <div className="InputContainer">
                     <input type="text"
                            placeholder="Enter description here"
                            value={description}
                            onChange={(ev) => setDescription(ev.target.value)}
-                           className="inputBox"
+                           className="edit-or-new-task-textarea inputBox"
                     />
-                </div>
-                <br/>
-
-                <div className="InputContainer">
                     <input className={'inputButton'} type="button" onClick={handleNewTask} value={'Submit'}/>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }

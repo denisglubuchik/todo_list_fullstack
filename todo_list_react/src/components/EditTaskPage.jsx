@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-import {edit_task} from "../api/api";
+import {delete_task, edit_task} from "../api/api";
 import {axios_instance, set_auth} from "../auth/auth";
 
 const EditTaskPage = () => {
@@ -19,7 +19,19 @@ const EditTaskPage = () => {
             set_auth(axios_instance)
     }, []);
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
+
+    const handleDelete = async () => {
+        try {
+            await Promise.all([delete_task(axios_instance, task.id)])
+                .then(() => {
+                    window.location.href = "/"
+                    // navigate("/")
+                })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const handleSave = () => {
         let modal = document.getElementById("editModal")
@@ -42,18 +54,18 @@ const EditTaskPage = () => {
                         console.log(error)
                     }
                 } else {
-                    window.location.href = "/"
-                    // navigate("/")
+                    // window.location.href = "/"
+                    navigate("/")
                 }
             }
         }
     }
 
     return(
-        <div className="edit-task-container" onClick={handleSave} id="editModal">
-            <div className="edit-task-wrapper">
+        <div className="edit-or-new-task-container" onClick={handleSave} id="editModal">
+            <div className="edit-or-new-task-wrapper">
                 <h1>Edit Task</h1>
-                <form className="edit-task-form">
+                <form className="edit-or-new-task-form">
                     <input type="text"
                            defaultValue={task.title}
                            value={title}
@@ -63,19 +75,22 @@ const EditTaskPage = () => {
                     <br/>
 
                     <textarea
-                           defaultValue={task.description}
-                           value={description}
-                           onChange={(ev) => setDescription(ev.target.value)}
-                           className="edit-task-textarea inputBox"
+                        defaultValue={task.description}
+                        value={description}
+                        onChange={(ev) => setDescription(ev.target.value)}
+                        className="edit-or-new-task-textarea inputBox"
                     />
-                    <div style={{ display: "flex" }}>
+                    <div style={{display: "flex"}}>
                         <input type="checkbox"
                                defaultChecked={task.is_done}
                                onChange={(ev) => setDone(ev.target.checked)}
                         /> Is Done
                     </div>
-
-
+                    <div className="delete-task-button-container">
+                        <button className="delete-task-button" onClick={handleDelete}>
+                            Delete Task
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

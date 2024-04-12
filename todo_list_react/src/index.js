@@ -18,6 +18,10 @@ const router = createBrowserRouter([
                 path: "/tasks/:task_id",
                 element: <EditTaskPage/>,
             },
+            {
+                path: "/new_task",
+                element: <NewTaskPage/>,
+            },
         ],
     },
     {
@@ -27,10 +31,6 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <RegisterPage/>
-    },
-    {
-        path: "/new_task",
-        element: <NewTaskPage/>,
     },
 ])
 

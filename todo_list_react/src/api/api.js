@@ -11,8 +11,13 @@ const edit_task = (axios_instance, task_id, data) => {
     return axios_instance.put(`/tasks/${task_id}`, data)
 }
 
+const delete_task = (axios_instance, task_id) => {
+    return axios_instance.delete(`/tasks/${task_id}`)
+}
+
 export {
     get_tasks,
     create_task,
     edit_task,
+    delete_task,
 }
